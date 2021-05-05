@@ -1,0 +1,5 @@
+Sides wall
+Dog wall 
+Floor wall 
+Inlet velocity-inlet 1.0 k 0.05 e 0.00035
+Outlet pressure-outlet 0 
