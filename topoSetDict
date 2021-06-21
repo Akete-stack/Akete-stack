@@ -1,0 +1,37 @@
+FoamFile
+{
+    version 2.0;
+    format ascii;
+    class dictionary;
+    object topoSetDict;
+}
+actions
+(
+// porous
+ {
+    name porousCellSet;
+    type cellSet; //cellSet
+    action new;
+    source surfaceToCell;
+    sourceInfo
+    {
+        file "constant/triSurface/box.stl";
+        outsidePoints ((-1.5 0.0 0.0)); // definition of outside
+        includeCut false; // cells cut by surface
+        includeInside false; // cells not on outside of surf
+        includeOutside true; // cells on outside of surf
+        nearDistance -1; // cells with centre near surf
+        curvature 0.9; // cells within nearDistance
+    }
+  }
+ {
+   name porous;
+   type cellZoneSet;
+   action new;
+   source setToCellZone;
+   sourceInfo
+   {
+     set porousCellSet;
+   }
+ }
+);

@@ -1,0 +1,44 @@
+FoamFile
+{
+version 2.0;
+format ascii;
+class dictionary;
+location "constant";
+object fvOptions;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+porosity1
+{
+   type explicitPorositySource;
+
+   explicitPorositySourceCoeffs
+   {
+         selectionMode cellZone;
+//         cellZone fff-fluid_porous;
+         cellZone porous;
+         type DarcyForchheimer;
+
+       D 1E9;
+       F 10000;
+
+       d ($D $D $D);
+       f ($F $F $F);
+
+       coordinateSystem
+       {
+         type cartesian;
+         origin (0 0 0);
+         note "Any note can be written here.";
+         coordinateRotation
+         {
+            type axesRotation;
+            e1 (1 0 0);
+            e2 (0 0 1);
+         }
+       }
+     }
+
+}
+
+// ************************************************************************* //

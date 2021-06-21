@@ -1,0 +1,60 @@
+FoamFile
+{
+    version   2.0;
+    format    ascii;
+    class     dictionary;
+    location  "system";
+    object    meshDict;
+}
+
+surfaceFile "all.stl";
+
+maxCellSize 0.1;
+
+localRefinement
+{
+    "Floor"
+    {
+      cellSize 0.05;
+    }
+    "Inlet"
+    {
+      cellSize 0.05;
+    }
+    "Outlet"
+    {
+      cellSize 0.05;
+    }
+    "Sides"
+    {
+      cellSize 0.05;
+    }
+}
+renameBoundary
+{
+//  defaultName     fixedWalls;
+  defaultType     wall;
+  newPatchNames
+  {
+    "Inlet"
+      {
+       type patch;
+       newName Inlet;
+      }
+    "Outlet"
+      {
+       type patch;
+       newName Outlet;
+      }
+    }
+  }
+
+
+surfaceMeshRefinement
+{
+    surface
+    {
+        surfaceFile "constant/triSurface/box.stl";
+        cellSize 0.1;
+    }
+}
